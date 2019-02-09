@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/yuji0316/gRPC/hellovoicy"
+	pb "github.com/yuji0316/gRPC-sample/hellovoicy"
 	"google.golang.org/grpc"
 )
 

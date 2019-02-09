@@ -2,7 +2,7 @@
 
 ## 環境構築
 
-1. GoのgRPCライブラリを取得
+1. GoのgRPCライブラリを取得
 
     go get -u google.golang.org/grpc
 
@@ -18,9 +18,9 @@
 
     export PATH=$PATH:$GOPATH/bin
 
-## Protocol BuffersからGoのgRPC用コードを生成
+## Protocol BuffersからGoのgRPC用コードを生成
 
-1. Protocol BuffersでgRPCのイターフェースを定義  
+1. Protocol BuffersでgRPCのインターフェースを定義  
 [ソースコード](./hellovoicy/hellovoicy.proto)
 
 1. Protocol BuffersからGoのソースコードを生成  
