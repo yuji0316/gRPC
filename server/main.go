@@ -6,6 +6,7 @@ import (
 	"net"
 
 	pb "github.com/yuji0316/gRPC-sample/hellovoicy"
+	auth "github.com/yuji0316/gRPC-sample/server/auth"
 
 	"google.golang.org/grpc"
 )
@@ -29,7 +30,9 @@ func main() {
 	}
 
 	// サーバーを起動
-	s := grpc.NewServer()
+	s := grpc.NewServer(
+		grpc.UnaryInterceptor(auth.NewAuthenticationIntercepter),
+	)
 	pb.RegisterHelloVoicyServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("register serve error: %v", err)

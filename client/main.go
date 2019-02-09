@@ -1,12 +1,10 @@
 package main
 
 import (
-	"context"
 	"log"
-	"time"
 
+	server "github.com/yuji0316/gRPC-sample/client/server"
 	pb "github.com/yuji0316/gRPC-sample/hellovoicy"
-	"google.golang.org/grpc"
 )
 
 const (
@@ -15,18 +13,15 @@ const (
 )
 
 func main() {
-	// サーバーへの接続設定
-	conn, err := grpc.Dial(host+":"+port, grpc.WithInsecure())
+	// クライアントオブジェクト取得
+	ctx, client, err := server.GetClient()
 	if err != nil {
-		log.Fatalf("connect error: %v", err)
+		log.Fatalf("client error: %v", err)
 	}
-	defer conn.Close()
-	c := pb.NewHelloVoicyClient(conn)
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
+	defer server.Close()
 
 	// 処理実行
-	r, err := c.Hello(ctx, &pb.HelloVoicyRequest{Message: "Hello"})
+	r, err := client.Hello(ctx, &pb.HelloVoicyRequest{Message: "Hello"})
 	if err != nil {
 		log.Fatalf("execution error: %v", err)
 	}
