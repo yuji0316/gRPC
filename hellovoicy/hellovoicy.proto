@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package hellovoicy;
+
+service HelloVoicy {
+  rpc hello (HelloVoicyRequest) returns (HelloVoicyReply) {}
+}
+
+// 呼び出しメッセージ
+message HelloVoicyRequest {
+  string message = 1;
+}
+
+// リターンメッセージ
+message HelloVoicyReply {
+  string message = 1;
+}
